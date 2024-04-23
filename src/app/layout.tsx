@@ -5,6 +5,9 @@ import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 
+import Loading from '@/components/Loading';
+
+import StoreProvider from '@/app/StoreProvider';
 import { siteConfig } from '@/constant/config';
 
 // !STARTERCONF Change these default meta
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
     shortcut: '/favicon/favicon-16x16.png',
     apple: '/favicon/apple-touch-icon.png',
   },
-  manifest: `/favicon/site.webmanifest`,
+  manifest: '/favicon/site.webmanifest',
   openGraph: {
     url: siteConfig.url,
     title: siteConfig.title,
@@ -39,14 +42,8 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/images/og.jpg`],
-    // creator: '@th_clarence',
+    creator: '@agascoot_reggae',
   },
-  // authors: [
-  //   {
-  //     name: 'Theodorus Clarence',
-  //     url: 'https://theodorusclarence.com',
-  //   },
-  // ],
 };
 
 export default function RootLayout({
@@ -56,7 +53,14 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <StoreProvider>
+          <section className='bg-dark text-white'>
+            <Loading />
+            <div className='layout min-h-screen'>{children}</div>
+          </section>
+        </StoreProvider>
+      </body>
     </html>
   );
 }

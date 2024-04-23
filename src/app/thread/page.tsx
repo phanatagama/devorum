@@ -14,8 +14,7 @@ import ThreadItem from '@/components/thread/thread-item';
 
 export default function Dashboard() {
   const threads = useAppSelector((state) => state.threads);
-  const [token, setToken] = React.useState<string | null>(null);
-
+  const token = getFromLocalStorage('token');
   const [categories, setCategories] = React.useState<string>('');
   const onClickCategory = (category: string) => {
     setCategories(category);
@@ -24,15 +23,11 @@ export default function Dashboard() {
     if (categories === '') return true;
     return x.category === categories;
   });
-
-  React.useEffect(() => {
-    setToken(getFromLocalStorage('token'));
-  }, []);
   return (
     <>
       <div className='pt-4'>
         <Navbar />
-        {token !== null && <FormThread />}
+        {token && <FormThread />}
         {categories && (
           <div className='flex'>
             <h5 className='text-xl font-bold mr-3'>Filter Category:</h5>

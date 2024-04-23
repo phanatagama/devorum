@@ -8,11 +8,10 @@ const nextConfig = {
   swcMinify: true,
 
   // Uncoment to add domain whitelist
-  // images: {
-  //   domains: [
-  //     'res.cloudinary.com',
-  //   ],
-  // },
+  images: {
+    dangerouslyAllowSVG: true,
+    domains: ['res.cloudinary.com', 'ui-avatars.com'],
+  },
 
   webpack(config) {
     // Grab the existing rule that handles SVG imports

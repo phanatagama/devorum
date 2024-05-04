@@ -2,8 +2,9 @@ import { act, screen } from '@testing-library/react';
 
 import { Leaderboard } from '@/lib/features/leaderboards/type';
 
+import UserCardList from '@/components/UserCardList';
+
 import { renderWithProviders } from '@/__mocks__/wrapper';
-import { UserCardList } from '@/app/leaderboard/page';
 
 describe('UserCardList', () => {
   it('should render correctly', async () => {

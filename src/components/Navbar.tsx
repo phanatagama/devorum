@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { asyncGetProfile } from '@/lib/features/profile/action';
+import { fetchProfile } from '@/lib/features/profile/action';
 import { useAppDispatch } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
@@ -23,7 +23,7 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-    dispatch(asyncGetProfile());
+    dispatch(fetchProfile());
     getLocalStorageItem('token');
   }, [dispatch]);
 

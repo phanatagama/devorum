@@ -1,34 +1,52 @@
-import { Owner } from '@/lib/features/threads_detail/type';
-import { AppDispatch } from '@/lib/store';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { localhostUrl } from '@/constant/env';
+import api from '@/lib/features/api';
 
-export const ActionTypes = {
-  FETCH_PROFILE: 'FETCH_PROFILE',
-  FETCH_PROFILE_ERROR: 'FETCH_PROFILE_ERROR',
-};
+export const fetchProfile = createAsyncThunk(
+  'profile/fetchProfile',
+  async () => {
+    const res = await api.getProfile();
+    return res;
+  }
+);
 
-export const fetchProfileActionCreator = ({ user }: { user: Owner }) => ({
-  type: ActionTypes.FETCH_PROFILE,
-  payload: { user },
+export const getProfile = createSlice({
+  name: 'profile',
+  initialState: {
+    user: {
+      id: '',
+      name: '',
+      email: '',
+      avatar: '',
+    },
+  },
+  reducers: {
+    addProfile(state, action) {
+      return {
+        user: action.payload.user,
+      };
+    },
+    fetchProfileError(state) {
+      return state;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchProfile.fulfilled, (state, action) => {
+      if (action.payload.data === undefined) {
+        return state;
+      }
+      return {
+        user: action.payload.data.user,
+      };
+    });
+    builder.addCase(fetchProfile.rejected, (state) => {
+      return state;
+    });
+    builder.addCase(fetchProfile.pending, (state) => {
+      return state;
+    });
+  },
 });
 
-export const fetchProfileErrorActionCreator = () => ({
-  type: ActionTypes.FETCH_PROFILE_ERROR,
-});
-
-export function asyncGetProfile() {
-  return async (dispatch: AppDispatch) => {
-    try {
-      const res = await fetch(localhostUrl + '/users/me', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      const data = await res.json();
-      dispatch(fetchProfileActionCreator(data.data));
-    } catch (error) {
-      dispatch(fetchProfileErrorActionCreator());
-    }
-  };
-}
+export const profileReducer = getProfile.reducer;
+export const { addProfile, fetchProfileError } = getProfile.actions;

@@ -1,3 +1,8 @@
+export interface ApiResponse<Type> {
+  message: string;
+  status: string;
+  data: Type;
+}
 export interface DataLeaderboard {
   leaderboards: Leaderboard[];
 }

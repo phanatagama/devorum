@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 
-import * as action from '@/lib/features/leaderboards/action';
+import { fetchLeaderboard } from '@/lib/features/leaderboards/action';
 import { Leaderboard } from '@/lib/features/leaderboards/type';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
@@ -12,20 +12,20 @@ export default function LeaderboardPage() {
   const leaderboards = useAppSelector((state) => state.leaderboards);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(action.asyncfetchLeaderboard());
+    dispatch(fetchLeaderboard());
   }, [dispatch]);
 
   return (
     <>
       <div className='pt-4'>
         <Navbar />
-        <CardList leaderboards={leaderboards} />
+        <UserCardList leaderboards={leaderboards} />
       </div>
     </>
   );
 }
 
-const CardList: React.FC<{ leaderboards: Leaderboard[] }> = ({
+export const UserCardList: React.FC<{ leaderboards: Leaderboard[] }> = ({
   leaderboards,
 }) => {
   return (

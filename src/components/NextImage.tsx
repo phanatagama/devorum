@@ -42,6 +42,7 @@ export default function NextImage({
       className={className}
     >
       <Image
+        unoptimized
         className={cn(
           classNames?.image,
           status === 'loading' && cn('animate-pulse', classNames?.blur)

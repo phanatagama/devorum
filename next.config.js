@@ -10,12 +10,17 @@ const nextConfig = {
   // Uncoment to add domain whitelist
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['res.cloudinary.com', 'ui-avatars.com'],
+    domains: ['res.cloudinary.com', 'ui-avatars.com', 'localhost'],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'ui-avatars.com',
         port: '',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
       },
     ],
   },

@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RUNNER_TOOL_CACHE: /toolcache
-      # NODE_ENV: development
+      RUNNING_ENV: development
     strategy:
       matrix:
         node: [18, 20]

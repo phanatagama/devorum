@@ -1,5 +1,7 @@
 export const isProd = process.env.NODE_ENV === 'production';
-export const isLocal = process.env.NODE_ENV === 'development';
+export const isLocal =
+  process.env.NODE_ENV === 'development' ||
+  process.env.RUNNING_ENV === 'development';
 const vercelUrl = 'devorum-git-testing-phanatagamas-projects';
 export const showLogger = isLocal
   ? true

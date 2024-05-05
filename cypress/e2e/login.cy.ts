@@ -48,3 +48,5 @@ describe('Login spec', () => {
     cy.get('h2').contains('Create Thread').should('be.visible');
   });
 });
+
+export {};

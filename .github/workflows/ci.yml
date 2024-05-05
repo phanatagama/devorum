@@ -30,7 +30,7 @@ jobs:
           dest: ~/setup-pnpm
       - name: npm install and test
         run: |
-          pnpm install --force --frozen-lockfile --silent
+          pnpm install --force
           pnpm run test
       - name: Cypress run
         uses: cypress-io/github-action@v6

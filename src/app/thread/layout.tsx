@@ -4,8 +4,8 @@ import * as React from 'react';
 import '@/styles/colors.css';
 
 export const metadata: Metadata = {
-  title: 'Components',
-  description: 'Pre-built components with awesome default',
+  title: 'Thread',
+  description: 'Read and discuss with other people about the thread',
 };
 
 export default function ComponentsLayout({

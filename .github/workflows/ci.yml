@@ -44,14 +44,6 @@ jobs:
         with:
           name: sample_spec.js.mp4
           path: cypress/videos/sample_spec.js.mp4
-      - name: Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Cypress Tests
-          path: cypress/results/results.xml
-          reporter: java-junit
-          fail-on-error: true
       - name: e2e test
         run: |
           pnpm run ci:test

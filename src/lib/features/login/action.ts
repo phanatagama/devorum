@@ -2,7 +2,7 @@ import { hideLoading, showLoading } from '@/lib/features/loading/action';
 import logger from '@/lib/logger';
 import { AppDispatch } from '@/lib/store';
 
-import { localhostUrl } from '@/constant/env';
+import { isLocal, localhostUrl } from '@/constant/env';
 
 export function asyncLogin({
   data,
@@ -32,7 +32,9 @@ export function asyncLogin({
     } catch (error) {
       // Handle registration errors
       logger(error, 'Login error:');
-      alert(`Login failed! Please try again. ${localhostUrl}`);
+      alert(
+        `Login failed! Please try again. this is local: ${isLocal} | url: ${localhostUrl}`
+      );
       throw new Error('Login failed');
     }
     dispatch(hideLoading());

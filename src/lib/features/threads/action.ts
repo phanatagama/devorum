@@ -31,9 +31,9 @@ export function asyncfetchThreads() {
       const data = await res.json();
       dispatch(fetchThreadsActionCreator(data));
     } catch (error) {
-      logger(error, `failed to fetch threads ${process.env.RUNNING_ENV}`);
+      logger(error, `failed to fetch threads ${process.env.PROJECT_URL}`);
       showAlert(
-        `failed to fetch threads ${localhostUrl}/threads || vercel: ${process.env.VERCEL_URL}`
+        `failed to fetch threads ${localhostUrl}/threads || vercel: ${process.env.PROJECT_URL}`,
       );
     }
     dispatch(hideLoading());

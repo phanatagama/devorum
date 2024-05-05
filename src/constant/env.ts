@@ -9,6 +9,6 @@ export const showLogger = isLocal
 
 export const apiBaseUrl = 'https://forum-api.dicoding.dev/v1';
 
-export const localhostUrl = isLocal
+export const localhostUrl = !isLocal
   ? 'http://localhost:3000/api/v1'
   : `https://${vercelUrl}.vercel.app/api/v1`;

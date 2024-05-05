@@ -1,4 +1,4 @@
-import { Owner } from '@/lib/features/threads_detail/action';
+import { Owner } from '@/lib/features/threads_detail/type';
 import { ActionTypes } from '@/lib/features/users/action';
 
 type ActionReducer = {

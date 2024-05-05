@@ -1,5 +1,7 @@
 import { hideLoading, showLoading } from '@/lib/features/loading/action';
 import { DataThread } from '@/lib/features/threads/type';
+import { showAlert } from '@/lib/helper';
+import logger from '@/lib/logger';
 import { AppDispatch } from '@/lib/store';
 
 import { localhostUrl } from '@/constant/env';
@@ -29,7 +31,10 @@ export function asyncfetchThreads() {
       const data = await res.json();
       dispatch(fetchThreadsActionCreator(data));
     } catch (error) {
-      alert('failed to fetch threads');
+      logger(error, `failed to fetch threads ${process.env.RUNNING_ENV}`);
+      showAlert(
+        `failed to fetch threads ${localhostUrl}/threads || vercel: ${process.env.VERCEL_URL}`
+      );
     }
     dispatch(hideLoading());
   };

@@ -1,4 +1,6 @@
-import { ActionTypes, ThreadData } from './action';
+import { ThreadData } from '@/lib/features/threads/type';
+
+import { ActionTypes } from './action';
 
 type ActionReducer = {
   type: string;

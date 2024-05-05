@@ -42,6 +42,7 @@ export default function NextImage({
       className={className}
     >
       <Image
+        unoptimized
         className={cn(
           classNames?.image,
           status === 'loading' && cn('animate-pulse', classNames?.blur)
@@ -50,7 +51,7 @@ export default function NextImage({
         width={width}
         height={height}
         alt={alt}
-        onLoadingComplete={() => setStatus('complete')}
+        onLoad={() => setStatus('complete')}
         {...rest}
       />
     </figure>

@@ -1,46 +1,38 @@
-import { DataLeaderboard } from '@/lib/features/leaderboards/type';
-import logger from '@/lib/logger';
-import { AppDispatch } from '@/lib/store';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { localhostUrl } from '@/constant/env';
+import api from '@/lib/features/api';
+import { Leaderboard } from '@/lib/features/leaderboards/type';
 
-export const ActionTypes = {
-  FETCH_LEADERBOARDS: 'FETCH_LEADERBOARDS',
-  FAILED_FETCH_LEADERBOARD: 'FAILED_FETCH_LEADERBOARD',
-};
+export const fetchLeaderboard = createAsyncThunk(
+  'leaderboards/fetchLeaderboard',
+  async () => {
+    const data = await api.getLeaderBoards();
+    return data;
+  }
+);
 
-const fetchLeaderboardActionCreator = ({
-  data: { leaderboards },
-}: {
-  data: DataLeaderboard;
-}) => {
-  return {
-    type: ActionTypes.FETCH_LEADERBOARDS,
-    payload: {
-      leaderboards,
+const leaderboardSlice = createSlice({
+  name: 'leaderboards',
+  initialState: [] satisfies [] as Leaderboard[],
+  reducers: {
+    addLeaderboard(
+      state,
+      action: PayloadAction<{ leaderboards: Leaderboard[] }>
+    ) {
+      return action.payload.leaderboards;
     },
-  };
-};
-
-const failedFetchLeaderboardActionCreator = () => {
-  return {
-    type: ActionTypes.FAILED_FETCH_LEADERBOARD,
-  };
-};
-
-export function asyncfetchLeaderboard() {
-  return async (dispatch: AppDispatch) => {
-    try {
-      const res = await fetch(localhostUrl + '/leaderboards');
-      const data = await res.json();
-      if (data.status === 'fail') {
-        dispatch(failedFetchLeaderboardActionCreator());
-        return;
-      }
-      dispatch(fetchLeaderboardActionCreator(data));
-    } catch (error) {
-      // dispatch(failedFetchLeaderboardActionCreator());
-      logger(error);
-    }
-  };
-}
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchLeaderboard.fulfilled, (state, action) => {
+      return action.payload.data.leaderboards;
+    });
+    builder.addCase(fetchLeaderboard.rejected, (state) => {
+      return state;
+    });
+    builder.addCase(fetchLeaderboard.pending, (state) => {
+      return state;
+    });
+  },
+});
+export const { addLeaderboard } = leaderboardSlice.actions;
+export const leaderboardReducer = leaderboardSlice.reducer;

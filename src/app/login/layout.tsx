@@ -4,8 +4,8 @@ import * as React from 'react';
 import '@/styles/colors.css';
 
 export const metadata: Metadata = {
-  title: 'Components',
-  description: 'Pre-built components with awesome default',
+  title: 'Login',
+  description: 'Login with your account to start discuss',
 };
 
 export default function ComponentsLayout({

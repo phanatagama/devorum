@@ -30,7 +30,10 @@ const RegisterPage = () => {
     password: '',
   });
   const router = useRouter();
-  const token = localStorage.getItem('token');
+  const token =
+    typeof window !== 'undefined'
+      ? window.localStorage.getItem('token')
+      : undefined;
   if (token) router.push('/login');
   const dispatch = useAppDispatch();
 

@@ -90,6 +90,7 @@ const LoginPage = () => {
                   <input
                     type='email'
                     id='email'
+                    data-testid='email'
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black'
@@ -105,6 +106,7 @@ const LoginPage = () => {
                   <input
                     type='password'
                     id='password'
+                    data-testid='password'
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                     className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black'
@@ -115,6 +117,7 @@ const LoginPage = () => {
                 </div>
                 <div className='flex'>
                   <button
+                    data-testid='submit'
                     type='submit'
                     className='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600'
                   >

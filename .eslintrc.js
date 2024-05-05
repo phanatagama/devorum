@@ -3,8 +3,14 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    'cypress/globals': true,
   },
-  plugins: ['@typescript-eslint', 'simple-import-sort', 'unused-imports'],
+  plugins: [
+    '@typescript-eslint',
+    'simple-import-sort',
+    'unused-imports',
+    'cypress',
+  ],
   extends: [
     'eslint:recommended',
     'next',

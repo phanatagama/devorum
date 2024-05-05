@@ -2,7 +2,7 @@ import { hideLoading, showLoading } from '@/lib/features/loading/action';
 import logger from '@/lib/logger';
 import { AppDispatch } from '@/lib/store';
 
-import { localhostUrl } from '@/constant/env';
+import { apiBaseUrl } from '@/constant/env';
 
 export function asyncRegister({
   data,
@@ -16,7 +16,7 @@ export function asyncRegister({
   return async (dispatch: AppDispatch) => {
     dispatch(showLoading());
     try {
-      const res = await fetch(localhostUrl + '/register', {
+      const res = await fetch(apiBaseUrl + '/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),

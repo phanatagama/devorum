@@ -2,7 +2,7 @@ import { hideLoading, showLoading } from '@/lib/features/loading/action';
 import logger from '@/lib/logger';
 import { AppDispatch } from '@/lib/store';
 
-import { isLocal, localhostUrl } from '@/constant/env';
+import { apiBaseUrl, isLocal, localhostUrl } from '@/constant/env';
 
 export function asyncLogin({
   data,
@@ -15,12 +15,15 @@ export function asyncLogin({
   return async (dispatch: AppDispatch) => {
     dispatch(showLoading());
     try {
-      const res = await fetch(localhostUrl + '/login', {
+      const res = await fetch(apiBaseUrl + '/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
       const response = await res.json();
+      logger(
+        `isLocal: ${isLocal} | url: ${localhostUrl} | vercel: ${process.env.VERCEL_URL}`
+      );
       if (response.status === 'fail') {
         alert('Login failed! Please try again.\n' + response.message);
       } else {
@@ -31,10 +34,11 @@ export function asyncLogin({
       // Handle successful registration
     } catch (error) {
       // Handle registration errors
-      logger(error, 'Login error:');
-      alert(
-        `Login failed! Please try again. this is local: ${isLocal} | url: ${localhostUrl}`
+      logger(
+        error,
+        `Login error: . this is local: ${isLocal} | url: ${localhostUrl} | vercel: ${process.env.VERCEL_URL}`
       );
+      alert('Login failed! Please try again');
       throw new Error('Login failed');
     }
     dispatch(hideLoading());

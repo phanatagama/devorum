@@ -32,7 +32,7 @@ export function asyncLogin({
     } catch (error) {
       // Handle registration errors
       logger(error, 'Login error:');
-      alert('Login failed! Please try again.');
+      alert(`Login failed! Please try again. ${localhostUrl}`);
       throw new Error('Login failed');
     }
     dispatch(hideLoading());

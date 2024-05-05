@@ -11,6 +11,14 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     domains: ['res.cloudinary.com', 'ui-avatars.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 
   webpack(config) {

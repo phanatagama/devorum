@@ -25,6 +25,7 @@ export const initialDetailThreadState: DetailThread = {
     id: '',
     name: '',
     avatar: '',
+    email: '',
   },
 };
 export default function threadDetailReducer(

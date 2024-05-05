@@ -32,6 +32,6 @@
     ".next/types/**/*.ts",
     "./cypress.d.ts"
   ],
-  "exclude": ["node_modules", "cypress.config.ts", "cypress"],
+  "exclude": ["node_modules", "cypress.config.ts", "cypress", "**/*.cy.*"],
   "moduleResolution": ["node_modules", ".next", "node"]
 }

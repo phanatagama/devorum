@@ -30,12 +30,13 @@ jobs:
           dest: ~/setup-pnpm
       - name: npm install and test
         run: |
-          pnpm install --force
+          pnpm install --force --frozen-lockfile --silent
           pnpm run test
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          start: npm start
+          build: pnpm run build
+          start: pnpm start
           browser: edge
           config: pageLoadTimeout=100000,baseUrl=http://localhost:3000
       - name: Save video

@@ -19,3 +19,9 @@ export const formatDate = (dateString: string): string => {
   const year = date.getFullYear().toString();
   return `${day} ${month} ${year}`;
 };
+
+export function showAlert(message: string): void {
+  if (typeof window !== 'undefined') {
+    window.alert(message);
+  }
+}

@@ -2,10 +2,11 @@
 import React from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 
+import { asyncfetchThreads } from '@/lib/features/threads/action';
 import { ThreadData } from '@/lib/features/threads/type';
 import { initialDetailThreadState } from '@/lib/features/threads_detail/reducer';
 import { getFromLocalStorage } from '@/lib/helper';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import Button from '@/components/buttons/Button';
 import Navbar from '@/components/Navbar';
@@ -25,9 +26,12 @@ export default function Dashboard() {
     return x.category === categories;
   });
 
+  const dispatch = useAppDispatch();
+
   React.useEffect(() => {
     setToken(getFromLocalStorage('token'));
-  }, []);
+    dispatch(asyncfetchThreads());
+  }, [dispatch]);
   return (
     <>
       <div className='pt-4'>

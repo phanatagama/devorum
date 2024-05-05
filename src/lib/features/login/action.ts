@@ -22,7 +22,7 @@ export function asyncLogin({
       });
       const response = await res.json();
       logger(
-        `isLocal: ${isLocal} | url: ${localhostUrl} | vercel: ${process.env.VERCEL_URL}`
+        `isLocal: ${isLocal} | url: ${localhostUrl} | vercel: ${process.env.PROJECT_URL}`,
       );
       if (response.status === 'fail') {
         alert('Login failed! Please try again.\n' + response.message);
@@ -36,7 +36,7 @@ export function asyncLogin({
       // Handle registration errors
       logger(
         error,
-        `Login error: . this is local: ${isLocal} | url: ${localhostUrl} | vercel: ${process.env.VERCEL_URL}`
+        `Login error: . this is local: ${isLocal} | url: ${localhostUrl} | vercel: ${process.env.PROJECT_URL}`,
       );
       alert('Login failed! Please try again');
       throw new Error('Login failed');

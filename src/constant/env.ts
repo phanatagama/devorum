@@ -1,12 +1,12 @@
 export const isProd = process.env.NODE_ENV === 'production';
 export const isLocal =
   process.env.NODE_ENV === 'development' ||
-  process.env.VERCEL_URL === undefined ||
-  process.env.VERCEL_URL === 'undefined';
+  process.env.PROJECT_URL === undefined ||
+  process.env.PROJECT_URL === 'undefined';
 const vercelUrl =
-  process.env.VERCEL_URL === undefined
+  process.env.PROJECT_URL === undefined
     ? 'devorum-git-testing-phanatagamas-projects'
-    : process.env.VERCEL_URL;
+    : process.env.PROJECT_URL;
 export const showLogger = isLocal
   ? true
   : process.env.NEXT_PUBLIC_SHOW_LOGGER === 'true' ?? false;

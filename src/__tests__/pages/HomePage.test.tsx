@@ -1,15 +1,26 @@
-// !STARTERCONF You should delete this page
+import { screen } from '@testing-library/react';
 
-import { render, screen } from '@testing-library/react';
-
+import { renderWithProviders } from '@/__mocks__/wrapper';
 import HomePage from '@/app/page';
 
-describe.skip('Homepage', () => {
-  it('renders the Components', () => {
-    render(<HomePage />);
+/**
+ * Test scenario for Homepage
+ *
+ * - Should display navbar component like Forum, Home, Leaderboard
+ */
 
-    const heading = screen.getByText(/Leaderboard/i);
+describe('Homepage test', () => {
+  it('Should display navbar component like Forum, Home, Leaderboard', () => {
+    renderWithProviders(<HomePage />);
 
-    expect(heading).toBeInTheDocument();
+    const forum = screen.getByText('Forum');
+    const home = screen.getByText('Home');
+    const leaderboard = screen.getByText('Leaderboard');
+    const login = screen.getByText('Sign In');
+
+    expect(forum).toBeInTheDocument();
+    expect(home).toBeInTheDocument();
+    expect(leaderboard).toBeInTheDocument();
+    expect(login).toBeInTheDocument();
   });
 });

@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { loadingBarReducer } from 'react-redux-loading-bar';
 
 // import reducer asfrom '@/lib/features/leaderboards/action';
 import { leaderboardReducer } from '@/lib/features/leaderboards/action';
@@ -15,12 +16,14 @@ const rootReducer = combineReducers({
   users: usersReducer,
   profile: profileReducer,
   isLoading: loadingReducer,
+  loadingBar: loadingBarReducer,
 });
 
 export const makeStore = (preloadedState?: Partial<RootState>) => {
   return configureStore({
     reducer: rootReducer,
     preloadedState,
+    // middleware: () => new Tuple(loadingBarMiddleware()),
   });
 };
 

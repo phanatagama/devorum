@@ -1,4 +1,6 @@
-import { hideLoading, showLoading } from '@/lib/features/loading/action';
+// import { hideLoading, showLoading } from '@/lib/features/loading/action';
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
+
 import { asyncfetchThreads } from '@/lib/features/threads/action';
 import { asyncfetchThread } from '@/lib/features/threads_detail/action';
 import { AppDispatch } from '@/lib/store';
@@ -26,7 +28,7 @@ export function asyncPostComments({
           body: JSON.stringify({
             content,
           }),
-        }
+        },
       );
       if (response.ok) {
         // Handle successful form submission

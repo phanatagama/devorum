@@ -2,6 +2,12 @@ import { ActionTypes } from '@/lib/features/threads/action';
 import threadsReducer from '@/lib/features/threads/reducer';
 import { ThreadData } from '@/lib/features/threads/type';
 
+/**
+ * Test scenario for Threads reducer
+ *
+ * - Should return empty when type is not recognized
+ * - Should return list of threads when type is FETCH_THREADS
+ */
 describe('Threads reducer test', () => {
   it('Should return empty when type is not recognized', () => {
     const result = threadsReducer([], { type: 'UNKNOWN' });

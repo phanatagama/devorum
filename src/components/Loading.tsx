@@ -1,17 +1,26 @@
 'use client';
-import { ImSpinner2 } from 'react-icons/im';
 
-import { useAppSelector } from '@/lib/hooks';
+import LoadingBar from 'react-redux-loading-bar';
 
 export default function Loading() {
-  const isLoading = useAppSelector((state) => state.isLoading);
   return (
-    <>
-      {isLoading && (
-        <div className='sticky top-0'>
-          <ImSpinner2 className='animate-spin mx-auto w-8 h-8' />
-        </div>
-      )}
-    </>
+    <header>
+      <LoadingBar
+        className='bg-primary-500 h-5'
+        updateTime={100}
+        progressIncrease={10}
+      />
+    </header>
   );
+  // const isLoading = useAppSelector((state) => state.isLoading);
+  // return (
+  //   <>
+  //     {isLoading && (
+  //       <div className='sticky top-0'>
+  //         {/* <ImSpinner2 className='animate-spin mx-auto w-8 h-8' /> */}
+  //         <LoadingBar />
+  //       </div>
+  //     )}
+  //   </>
+  // );
 }

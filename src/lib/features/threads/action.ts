@@ -1,4 +1,6 @@
-import { hideLoading, showLoading } from '@/lib/features/loading/action';
+// import { hideLoading, showLoading } from '@/lib/features/loading/action';
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
+
 import { DataThread } from '@/lib/features/threads/type';
 import { showAlert } from '@/lib/helper';
 import logger from '@/lib/logger';

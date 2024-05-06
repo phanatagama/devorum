@@ -7,6 +7,7 @@ type SkeletonProps = React.ComponentPropsWithoutRef<'div'>;
 export default function Skeleton({ className, ...rest }: SkeletonProps) {
   return (
     <div
+      data-testid='skeleton'
       className={cn('animate-shimmer bg-[#f6f7f8]', className)}
       style={{
         backgroundImage:

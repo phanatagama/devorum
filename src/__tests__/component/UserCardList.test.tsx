@@ -6,8 +6,13 @@ import UserCardList from '@/components/UserCardList';
 
 import { renderWithProviders } from '@/__mocks__/wrapper';
 
+/**
+ * Test scenario for UserCardList component
+ *
+ * - Should show text with name and score based on data provided
+ */
 describe('UserCardList', () => {
-  it('should render correctly', async () => {
+  it('Should show text with name and score based on data provided', async () => {
     const leaderboards: Leaderboard[] = [
       {
         score: 25,

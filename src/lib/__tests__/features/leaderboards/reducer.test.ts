@@ -4,6 +4,12 @@ import {
 } from '@/lib/features/leaderboards/action';
 import { Leaderboard } from '@/lib/features/leaderboards/type';
 
+/**
+ * Test scenario for Leaderboards reducer
+ *
+ * - Should return empty when type is not recognized
+ * - Should return list of leaderboards when action is addLeaderBoard
+ */
 describe('Leaderboards reducer test', () => {
   it('Should return empty when type is not recognized', () => {
     const result = leaderboardReducer([], { type: 'UNKNOWN' });

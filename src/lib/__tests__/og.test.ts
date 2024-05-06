@@ -1,5 +1,11 @@
 import { openGraph } from '@/lib/og';
 
+/**
+ * Test scenario for Open Graph function
+ *
+ * - should not return templateTitle when not specified
+ * - should return templateTitle when specified
+ */
 describe('Open Graph function should work correctly', () => {
   it('should not return templateTitle when not specified', () => {
     const result = openGraph({

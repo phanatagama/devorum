@@ -11,7 +11,13 @@ import {
 } from '@/lib/features/leaderboards/type';
 import logger from '@/lib/logger';
 
-describe('fetchLeaderboards thunk', () => {
+/**
+ * Test scenario for fetchLeaderboards thunk
+ *
+ * - Should return list of leaderboards when fetch is success
+ * - Should return empty when fetch is rejected
+ */
+describe('fetchLeaderboards thunk test', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -41,7 +47,7 @@ describe('fetchLeaderboards thunk', () => {
     status: 'success',
     data: { leaderboards },
   };
-  it('should return list of leaderboards', async () => {
+  it('Should return list of leaderboards when fetch is success', async () => {
     global.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         json: () => Promise.resolve(response),
@@ -60,7 +66,7 @@ describe('fetchLeaderboards thunk', () => {
     expect(currentLeaderboard).toEqual(leaderboards);
   });
 
-  it('leaderboard should empty when fetch is rejected', async () => {
+  it('Should return empty when fetch is rejected', async () => {
     global.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         json: () => Promise.reject(response),

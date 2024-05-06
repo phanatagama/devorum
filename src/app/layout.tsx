@@ -55,8 +55,9 @@ export default function RootLayout({
     <html>
       <body>
         <StoreProvider>
+          {/* <Header /> */}
+          <Loading />
           <section className='bg-dark text-white'>
-            <Loading />
             <div className='layout min-h-screen'>{children}</div>
           </section>
         </StoreProvider>
